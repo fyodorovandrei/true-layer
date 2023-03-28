@@ -1,15 +1,41 @@
-import type { GatsbyConfig } from "gatsby"
+import type { GatsbyConfig } from "gatsby";
+
+const siteUrl = process.env.URL || "https://www.yourdomain.tld";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `true-layer`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: "true-layer",
+    siteUrl,
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
-  plugins: [],
+  plugins: [
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/locales`,
+        name: "locale"
+      }
+    },
+    {
+      resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        localeJsonSourceName: "locale",
+        languages: ["en", "es", "it"],
+        defaultLanguage: "en",
+        trailingSlash: "always",
+        i18nextOptions: {
+          defaultNS: "common",
+          lowerCaseLng: true,
+          saveMissing: false,
+          interpolation: {
+            escapeValue: false
+          },
+          keySeparator: false,
+          nsSeparator: false,
+        }
+      }
+    }
+  ],
 }
 
 export default config
