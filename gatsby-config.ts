@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
+import { languages, defaultLanguage } from "./i18next";
 
 const siteUrl = process.env.URL || "https://www.yourdomain.tld";
 
@@ -20,8 +21,8 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-react-i18next`,
       options: {
         localeJsonSourceName: "locale",
-        languages: ["en", "es", "it"],
-        defaultLanguage: "en",
+        languages,
+        defaultLanguage,
         trailingSlash: "always",
         i18nextOptions: {
           defaultNS: "common",
