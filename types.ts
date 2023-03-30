@@ -55,4 +55,19 @@ export type PokemonType = {
 	}
 }
 
+export type PokemonGraphQLRecord = {
+	id: string;
+	name: string;
+	image: string;
+	names: string[];
+	genus: string[];
+	versions: {
+		version: string;
+		description: string[]
+	}[];
+}
+
+export type PokemonGraphQLQueryResult = {
+	node: PokemonGraphQLRecord
+}
 

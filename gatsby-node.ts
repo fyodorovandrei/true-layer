@@ -1,8 +1,10 @@
 import axios from "axios"
 import * as crypto from "crypto";
+import * as path from "path";
+import createPaginatedPages from "gatsby-paginate";
 import { languages } from "./i18next";
-import { PokemonSpecieListReturnType, PokemonSpeciesType, PokemonType } from "./gatsby-node.types";
-import { SourceNodesArgs } from "gatsby";
+import type { SourceNodesArgs } from "gatsby";
+import type { PokemonSpecieListReturnType, PokemonSpeciesType, PokemonType } from "./types";
 
 exports.sourceNodes = async ({ actions }: SourceNodesArgs) => {
 	const { createNode } = actions;
@@ -99,4 +101,46 @@ exports.sourceNodes = async ({ actions }: SourceNodesArgs) => {
 	}
 
 	return;
+}
+
+exports.createPages = async ({ graphql, actions: { createPage } }) => {
+	const result = await graphql(`
+		query {
+			pokemon: allPokemon {
+			    edges {
+			        node {
+			            id,
+			            image,
+			            names,
+			            versions {
+			                version,
+			                description
+			            },
+			            genus
+			        }
+			    }
+			}
+		}   
+	`);
+
+	const { edges } = result.data.pokemon;
+
+	createPaginatedPages({
+		edges,
+		createPage,
+		pageTemplate: path.resolve('./src/templates/Index.tsx'),
+		pageLength: 12,
+		pathPrefix: '',
+		context: {},
+	});
+
+	edges.map(({ node: pokemon }) => {
+		createPage({
+			path: `/pokemon/${pokemon.id}`,
+			component: path.resolve('./src/templates/PokemonDetails.tsx'),
+			context: {
+				pokemon
+			},
+		})
+	});
 }

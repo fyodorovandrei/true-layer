@@ -1,0 +1,17 @@
+.pagination {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.link {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+    color: gray;
+}
