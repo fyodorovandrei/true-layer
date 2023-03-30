@@ -1,9 +1,38 @@
 .header {
+    height: 10vh;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 5px 20px;
+}
+
+.languages {
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: 24px;
+    justify-content: end;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logo a {
+    text-decoration: none;
 }
 
 .link {
     text-transform: uppercase;
+}
+
+@media screen and (max-width: 400px) {
+    .languages,
+    .logo {
+        justify-content: center;
+    }
 }

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { graphql } from "gatsby";
-import { Trans, Link } from "gatsby-plugin-react-i18next";
-import { Header, PokemonCard, Pagination } from "../components";
+import { Link } from "gatsby-plugin-react-i18next";
+import { Header, PokemonCard, Pagination, Page } from "../components";
 import { useLocalizedPokemonList } from "../hooks";
 import type { PageProps } from "gatsby"
 import type { PokemonGraphQLQueryResult } from "../../types";
@@ -33,9 +33,8 @@ const IndexPage: React.FC<PageProps<DataProps, PageContextType>> = ({ pageContex
 	const localizedPokemonList = useLocalizedPokemonList(group);
 
 	return (
-		<main className={classnames.main}>
+		<Page>
 			<Header />
-			<Trans>Hello World</Trans>
 			<div className={classnames.pokemonList}>
 				{localizedPokemonList.map(({id, image, name}) => (
 					<Link className={classnames.cardLink} to={`/pokemon/${id}`} key={id}>
@@ -46,7 +45,7 @@ const IndexPage: React.FC<PageProps<DataProps, PageContextType>> = ({ pageContex
 			<div className={classnames.pagination}>
 				<Pagination first={first} last={last} index={index} />
 			</div>
-		</main>
+		</Page>
 	)
 }
 
