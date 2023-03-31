@@ -4,5 +4,8 @@
   "Genus": "Genere",
   "Version": "Versione",
   "Description": "Descrizione",
-  "Missing description": "Manca descrizione"
+  "Missing description": "Manca descrizione",
+  "No Pokemon found": "Nessun Pokemon trovato",
+  "Search a Pokemon": "Cerca un Pokemon",
+  "Search": "Cerca"
 }

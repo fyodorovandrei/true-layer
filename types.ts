@@ -70,3 +70,9 @@ export type PokemonGraphQLQueryResult = {
 	node: PokemonGraphQLRecord
 }
 
+export type LocalSearchPage = {
+	index: string,
+	store: {
+		[key: string]: PokemonGraphQLRecord
+	}
+}

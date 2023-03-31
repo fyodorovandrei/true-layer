@@ -1,7 +1,8 @@
+import { useMemo } from "react";
 import { useI18next } from "gatsby-plugin-react-i18next";
 import { useLocation } from "@reach/router";
-import type { PokemonGraphQLQueryResult, PokemonGraphQLRecord } from "../../types";
-import {useMemo} from "react";
+import { useFlexSearch } from 'react-use-flexsearch';
+import type { LocalSearchPage, PokemonGraphQLQueryResult, PokemonGraphQLRecord } from "../../types";
 
 export const useLocalizedPokemonList = (pokemon: PokemonGraphQLQueryResult[]) => {
 	const { language, languages } = useI18next();
@@ -48,4 +49,11 @@ export const useDetectVersionOfPokemon = (versions: { version: string; descripti
 	}), [versions, queryVersion]);
 
 	return defaultVersion || versions[0];
+}
+
+export const useLocalSearch = (localSearchPages: LocalSearchPage, searchQuery: string | null) => {
+	const { store, index } = localSearchPages;
+	const results = useFlexSearch(searchQuery || "", index, store) as PokemonGraphQLRecord[];
+
+	return results.map(node => ({node}));
 }

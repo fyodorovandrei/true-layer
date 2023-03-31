@@ -1,0 +1,19 @@
+.search {
+    padding-left: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.search input {
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+}
+
+.search button {
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid gray;
+}

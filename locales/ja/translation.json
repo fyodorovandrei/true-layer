@@ -4,5 +4,8 @@
   "Genus": "属",
   "Version": "バージョン",
   "Description": "説明",
-  "Missing description": "説明がありません"
+  "Missing description": "説明がありません",
+  "No Pokemon found": "ポケモンが見つかりません",
+  "Search a Pokemon": "ポケモンを探す",
+  "Search": "検索"
 }

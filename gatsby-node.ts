@@ -3,8 +3,9 @@ import * as crypto from "crypto";
 import * as path from "path";
 import createPaginatedPages from "gatsby-paginate";
 import { languages } from "./i18next";
-import type { SourceNodesArgs } from "gatsby";
-import type { PokemonSpecieListReturnType, PokemonSpeciesType, PokemonType } from "./types";
+import { query } from "./gatsby-config";
+import type { SourceNodesArgs, CreatePagesArgs } from "gatsby";
+import type { PokemonSpecieListReturnType, PokemonSpeciesType, PokemonType, PokemonGraphQLRecord, PokemonGraphQLQueryResult } from "./types";
 
 exports.sourceNodes = async ({ actions }: SourceNodesArgs) => {
 	const { createNode } = actions;
@@ -23,8 +24,8 @@ exports.sourceNodes = async ({ actions }: SourceNodesArgs) => {
 			} = pokemonSpeciesRequest.data;
 
 			// Extract versions for available languages
-			const versions = [];
-			const versionsRef = {};
+			const versions: PokemonGraphQLRecord["versions"] = [];
+			const versionsRef: Record<string, number> = {};
 			flavor_text_entries.forEach(({ language, flavor_text, version }) => {
 				if (languages.includes(language.name) && flavor_text !== undefined) {
 					const index = languages.indexOf(language.name);
@@ -50,7 +51,7 @@ exports.sourceNodes = async ({ actions }: SourceNodesArgs) => {
 			});
 
 			// Extract names for available languages
-			const names = [];
+			const names: string[] = [];
 			pokemonNames.forEach(({language, name}) => {
 				if (languages.includes(language.name)) {
 					const index = languages.indexOf(language.name);
@@ -59,7 +60,7 @@ exports.sourceNodes = async ({ actions }: SourceNodesArgs) => {
 			});
 
 			// Extract genus for available languages
-			const genus = [];
+			const genus: string[] = [];
 			genera.forEach(({language, genus: pokemonGenus}) => {
 				if (languages.includes(language.name)) {
 					const index = languages.indexOf(language.name);
@@ -103,33 +104,16 @@ exports.sourceNodes = async ({ actions }: SourceNodesArgs) => {
 	return;
 }
 
-exports.createPages = async ({ graphql, actions: { createPage } }) => {
-	const result = await graphql(`
-		query {
-			pokemon: allPokemon {
-			    edges {
-			        node {
-			            id,
-			            image,
-			            names,
-			            versions {
-			                version,
-			                description
-			            },
-			            genus
-			        }
-			    }
-			}
-		}   
-	`);
+exports.createPages = async ({ graphql, actions: { createPage } }: CreatePagesArgs) => {
+	const result = await graphql<{ pokemon: { edges: PokemonGraphQLQueryResult[] } }>(query);
 
-	const { edges } = result.data.pokemon;
+	const edges = result.data?.pokemon.edges || [];
 
 	createPaginatedPages({
 		edges,
 		createPage,
 		pageTemplate: path.resolve('./src/templates/Index.tsx'),
-		pageLength: 12,
+		pageLength: 8,
 		pathPrefix: '',
 		context: {},
 	});

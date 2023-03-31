@@ -3,6 +3,9 @@
   "Pokemon": "Pokemon",
   "Genus": "Genus",
   "Version": "Version",
-  "Description": "Descrizione",
-  "Missing description": "Manca descrizione"
+  "Description": "Description",
+  "Missing description": "Missing description",
+  "No Pokemon found": "No Pokemon found",
+  "Search a Pokemon": "Search a Pokemon",
+  "Search": "Search"
 }
