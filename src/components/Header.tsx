@@ -6,7 +6,13 @@ type Props = {
 	children?: React.ReactNode
 }
 const Header: React.FC<Props> = () => {
-	const {languages, changeLanguage} = useI18next();
+	const { languages, changeLanguage, language } = useI18next();
+
+	const handleChangeLanguage = async (e: React.MouseEvent<HTMLAnchorElement>, lng: string) => {
+		e.preventDefault();
+		await changeLanguage(lng);
+	}
+
 	return (
 		<header className={classnames.header}>
 			<div className={classnames.logo}>
@@ -17,13 +23,11 @@ const Header: React.FC<Props> = () => {
 			<div className={classnames.languages}>
 				{languages.map((lng) => (
 					<a
-						className={classnames.link}
+						className={`${classnames.link} ${language === lng ? classnames.activeLink : ""}`}
 						key={lng}
 						href="#"
-						onClick={(e) => {
-							e.preventDefault();
-							changeLanguage(lng);
-						}}>
+						onClick={(e) => handleChangeLanguage(e, lng)}
+					>
 						{lng}
 					</a>
 				))}

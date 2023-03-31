@@ -27,6 +27,11 @@
 
 .link {
     text-transform: uppercase;
+    text-decoration: none;
+}
+
+.activeLink {
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 400px) {
