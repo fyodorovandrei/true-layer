@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "gatsby-plugin-react-i18next";
+import { Link, Trans } from "gatsby-plugin-react-i18next";
 import * as classnames from "./Pagination.module.css";
 
 type Props = {
@@ -13,8 +13,12 @@ const Pagination: React.FC<Props> = ({ first, last, index }) => {
 
 	return (
 		<div className={classnames.pagination}>
-			<Link className={`${classnames.link} ${first ? classnames.disabled : ""}`} to={prevPage}>Prev</Link>
-			<Link className={`${classnames.link} ${last ? classnames.disabled : ""}`} to={nextPage}>Next</Link>
+			<Link className={`${classnames.link} ${first ? classnames.disabled : ""}`} to={prevPage}>
+				<Trans>Previous</Trans>
+			</Link>
+			<Link className={`${classnames.link} ${last ? classnames.disabled : ""}`} to={nextPage}>
+				<Trans>Next</Trans>
+			</Link>
 		</div>
 	);
 };
