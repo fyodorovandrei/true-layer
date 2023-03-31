@@ -10,7 +10,7 @@ exports.sourceNodes = async ({ actions }: SourceNodesArgs) => {
 	const { createNode } = actions;
 
 	try {
-		const pokemonSpeciesRequest = await axios.get<PokemonSpecieListReturnType>(`https://pokeapi.co/api/v2/pokemon-species?limit=50&offset=0`);
+		const pokemonSpeciesRequest = await axios.get<PokemonSpecieListReturnType>(`https://pokeapi.co/api/v2/pokemon-species?limit=200&offset=0`);
 
 		for (const pokemon of pokemonSpeciesRequest.data.results) {
 			const pokemonSpeciesRequest = await axios.get<PokemonSpeciesType>(pokemon.url);
