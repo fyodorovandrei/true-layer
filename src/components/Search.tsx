@@ -3,7 +3,7 @@ import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 import * as classnames from "./Search.module.css";
 
 type Props = {
-	query: string;
+	query: string | null;
 	onSearch: (value: string) => void;
 }
 
@@ -16,19 +16,23 @@ const Search: React.FC<Props> = ({ query, onSearch }) =>  {
 
 	useEffect(() => {
 		clearTimeout(delay);
-		delay = setTimeout(() => onSearch(value), 300);
+		if (value !== null) {
+			delay = setTimeout(() => onSearch(value), 300);
+		}
+
+		return () => clearTimeout(delay)
 
 	}, [value]);
 
 	const handleChange = (event: FormEvent<HTMLInputElement>) => {
 		setValue((event.target as HTMLInputElement).value)
 	}
-	const handleSubmit = () => onSearch(value);
+	const handleSubmit = () => value !== null && onSearch(value);
 
 	return (
 		<div className={classnames.search}>
 			<input
-				value={value}
+				value={value || ""}
 				onInput={handleChange}
 				placeholder={placeholder}
 			/>

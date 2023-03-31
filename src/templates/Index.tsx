@@ -58,7 +58,7 @@ const IndexPage: React.FC<PageProps<DataProps, PageContextType>> = (
 	return (
 		<Page>
 			<Header />
-			<Search query={searchQuery || ""} onSearch={handleSearch} />
+			<Search query={searchQuery} onSearch={handleSearch} />
 			<div
 				className={
 					`${classnames.pokemonList} ${localizedPokemonList.length === 0 ? classnames.emptyList : ""}`
