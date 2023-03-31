@@ -1,4 +1,8 @@
 {
   "Home": "Home",
-  "Pokemon": "Pokemon"
+  "Pokemon": "Pokemon",
+  "Genus": "Genus",
+  "Version": "Version",
+  "Description": "Descrizione",
+  "Missing description": "Manca descrizione"
 }

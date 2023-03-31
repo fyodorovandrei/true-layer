@@ -1,0 +1,26 @@
+.details {
+    text-align: center;
+}
+
+.item {
+    display: flex;
+}
+
+.image {
+    width: 300px;
+}
+
+.id {
+    color: gray;
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.name {
+    font-size: 50px;
+}
+
+.select {
+    margin-left: 10px;
+}
