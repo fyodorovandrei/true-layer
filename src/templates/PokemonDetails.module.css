@@ -1,5 +1,8 @@
 .details {
     text-align: center;
+    overflow-x: auto;
+    min-height: 40vh;
+    max-height: 80vh;
 }
 
 .item {
@@ -7,7 +10,7 @@
 }
 
 .image {
-    width: 300px;
+    width: 200px;
 }
 
 .id {
