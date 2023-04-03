@@ -24,6 +24,7 @@ const Header: React.FC<Props> = () => {
 				{languages.map((lng) => (
 					<a
 						className={`${classnames.link} ${language === lng ? classnames.activeLink : ""}`}
+						default-language={language === lng ? "true" : ""}
 						key={lng}
 						href="#"
 						onClick={(e) => handleChangeLanguage(e, lng)}
