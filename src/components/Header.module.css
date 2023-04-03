@@ -1,5 +1,5 @@
 .header {
-    height: 10vh;
+    min-height: 80px;
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
