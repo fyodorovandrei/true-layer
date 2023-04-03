@@ -3,6 +3,7 @@ import * as crypto from "crypto";
 import * as path from "path";
 import createPaginatedPages from "gatsby-paginate";
 import { languages } from "./i18next";
+import { getAsStaticFile } from "./src/utils/node";
 import { query } from "./gatsby-config";
 import type { SourceNodesArgs, CreatePagesArgs } from "gatsby";
 import type { PokemonSpecieListReturnType, PokemonSpeciesType, PokemonType, PokemonGraphQLRecord, PokemonGraphQLQueryResult } from "./types";
@@ -72,7 +73,7 @@ exports.sourceNodes = async ({ actions }: SourceNodesArgs) => {
 			const defaultVariety = varieties.find((variety) => variety.is_default);
 			if (defaultVariety) {
 				const pokemonDetailsRequest = await axios.get<PokemonType>(defaultVariety.pokemon.url);
-				image = pokemonDetailsRequest.data.sprites.front_default;
+				image = await getAsStaticFile(pokemonDetailsRequest.data.sprites.front_default);
 			}
 
 			const pokemonNode = {
