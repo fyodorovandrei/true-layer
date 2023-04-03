@@ -32,6 +32,7 @@ const Search: React.FC<Props> = ({ query, onSearch }) =>  {
 	return (
 		<div className={classnames.search}>
 			<input
+				data-testid="search-input"
 				value={value || ""}
 				onInput={handleChange}
 				placeholder={placeholder}
