@@ -17,7 +17,7 @@ describe("Header", () => {
 
 	it("<Header /> renders en as default language", () => {
 		const { container } = render(<Header />);
-		const defaultLanguageLink = container.querySelector("a[default-language]");
+		const defaultLanguageLink = container.querySelector("a[data-default-language]");
 		expect(defaultLanguageLink?.textContent).toBe("en");
 	});
 });
