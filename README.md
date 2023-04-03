@@ -29,5 +29,10 @@ npm run serve
 npm run test:unit
 ```
 
+## Run e2e tests
+```shell
+npm run test:e2e
+```
+
 ## Netlify public url
 https://prismatic-twilight-6daf29.netlify.app/
