@@ -24,5 +24,10 @@ npm run build
 npm run serve
 ```
 
+## Run unit tests
+```shell
+npm run test:unit
+```
+
 ## Netlify public url
 https://prismatic-twilight-6daf29.netlify.app/
