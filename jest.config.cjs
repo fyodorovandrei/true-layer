@@ -8,7 +8,7 @@ module.exports = {
             "<rootDir>/tests/__mocks__/file-mock.js"
     },
     setupFiles: [
-        "<rootDir>/tests/loadershim.js"
+        "<rootDir>/tests/loadershim.ts"
     ],
     testEnvironment: "jsdom",
     testMatch: [
@@ -23,7 +23,7 @@ module.exports = {
         url: "http://localhost:8000"
     },
     transform: {
-        "^.+\\.[jt]sx?$": "<rootDir>/tests/jest-preprocess.js"
+        "^.+\\.[jt]sx?$": "<rootDir>/tests/jest-preprocess.ts"
     },
     transformIgnorePatterns: [
         "node_modules/(?!(gatsby)/)"
